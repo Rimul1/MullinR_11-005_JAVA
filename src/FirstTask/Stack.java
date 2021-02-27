@@ -1,23 +1,16 @@
-public class Stack {
-    private class Node {
-        private Node prev;
-        private Node next;
-        private Integer value;
+package FirstTask;
 
-        public Node(Integer value) {
+public class Stack<T> {
+    private class Node {
+        private Node next;
+        private T value;
+
+        public Node(T value) {
             this.value = value;
         }
 
-        public Integer getValue() {
+        public T getValue() {
             return value;
-        }
-
-        public Node getPrev() {
-            return prev;
-        }
-
-        public void setPrev(Node prev) {
-            this.prev = prev;
         }
 
         public Node getNext() {
@@ -33,7 +26,7 @@ public class Stack {
 
     private Node head;
 
-    public void push(Integer value) {
+    public void push(T value) {
         Node node = new Node(value);
 
         if (head != null){
@@ -42,14 +35,14 @@ public class Stack {
         this.head = node;
     }
 
-    public Integer peek(){
+    public T peek(){
         if (head != null) {
             return head.getValue();
         }
         throw new MyEmptyStackException("Стек пустой");
     }
 
-    public Integer pop(){
+    public T pop(){
         if (head != null) {
             Node node = head;
             this.head = head.next;
