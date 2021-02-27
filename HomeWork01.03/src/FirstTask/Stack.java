@@ -1,6 +1,14 @@
 package FirstTask;
 
-public class Stack<T> {
+import java.util.Iterator;
+
+public class Stack<T> implements Iterable<T> {
+
+    @Override
+    public Iterator<T> iterator() {
+        return new StackIterator();
+    }
+
     private class Node {
         private Node next;
         private T value;
@@ -51,6 +59,23 @@ public class Stack<T> {
         throw new  MyEmptyStackException("Стек пустой");
     }
 
+    ////////////////////////////////////////////////////////////
+
+
+    public class StackIterator implements Iterator<T> {
+        public StackIterator() {
+        }
+
+        @Override
+        public boolean hasNext() {
+            return head != null;
+        }
+
+        @Override
+        public T next() {
+            return pop();
+        }
+    }
 
 
 }

@@ -7,11 +7,8 @@ public class Main {
         stack.push(2);
         Stack<String> stringStack = new Stack<>();
 
-        System.out.println(stack.pop());
-        System.out.println(stack.peek());
-        System.out.println(stringStack.peek());
-        System.out.println(stack.peek());
-
-
+        for (Integer i: stack){
+            System.out.println(i);
+        }
     }
 }
