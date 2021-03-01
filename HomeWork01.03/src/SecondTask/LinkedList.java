@@ -25,6 +25,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     private Node first;
     private Node last;
+    private int count;
 
     public void add(T value) {
         Node node = new Node(value);
@@ -35,12 +36,16 @@ public class LinkedList<T> implements Iterable<T> {
             node.prev = last;
         }
         last = node;
+        count++;
     }
 
 
     public T get(int i) {
         if (i < 0) {
             throw new IllegalArgumentException();
+        }
+        if (i > count) {
+            throw new IndexOutOfBoundsException();
         }
 
         int size = 0;
@@ -57,6 +62,10 @@ public class LinkedList<T> implements Iterable<T> {
             throw new IllegalArgumentException();
         }
 
+        if (i > count) {
+            throw new IndexOutOfBoundsException();
+        }
+
         int size = 0;
         Node node = first;
         while (size != i) {
@@ -69,6 +78,7 @@ public class LinkedList<T> implements Iterable<T> {
 
         prev.next = next;
         next.prev = prev;
+        count--;
     }
 
     public class LinkedListIterator implements Iterator<T> {

@@ -9,9 +9,13 @@ public class Main {
         integerLinkedlisst.add(3);
         integerLinkedlisst.add(4);
         integerLinkedlisst.add(5);
-
+        integerLinkedlisst.remove(3);
         for (Integer i : integerLinkedlisst) {
             System.out.println(i);
         }
+
+
+
+
     }
 }
