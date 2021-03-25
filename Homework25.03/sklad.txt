@@ -1,0 +1,3 @@
+Apple1:23
+Apple2:8
+Apple3:5
