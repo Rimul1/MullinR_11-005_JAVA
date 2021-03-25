@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Main<buyers2> {
     public static void main(String[] args) {
       /*  String[] strings = new String[]{
                 "Вася | Казань | ручка |5",
@@ -49,11 +49,11 @@ public class Main {
         buyers1.addAll(buyerList);
 
 
-
         Set<Buyer> buyers2 = new TreeSet<>(new BuyerByOrdersCountComparator()
                 .thenComparing(new BuyerByCityCountComparator()
                         .thenComparing(new BuyerByNameComparator())));
         buyers2.addAll(buyerList);
+
 
         List<Buyer> buyers = new ArrayList<>();
         Map<String, Map<String, Map<String, Integer>>> mapmap = new HashMap<>();
@@ -72,19 +72,67 @@ public class Main {
             buyers.add(buyer);
         }
 
+        for (Buyer buyer : buyers1) {
+            List<String> lines = buyerToString(buyer);
+            for (String line : lines) {
+                try(FileWriter writer = new FileWriter("set.txt", false))
+                {
 
-        f(buyers2);
-    }
+                    writer.write(line);
 
-    private static void f(Set<Buyer> buyers2) {
-        for (Buyer buyer1 : buyers2) {
-            System.out.println(buyer1.getNameBuyer());
-            for (City city : buyer1.getCities()) {
-                System.out.println(city.getName());
-                for (Order order : city.getOrders()) {
-                    System.out.println(order.getNameGoods());
+                    writer.flush();
+                }
+                catch(IOException ex){
+
+                    System.out.println(ex.getMessage());
                 }
             }
         }
+
+        for (Buyer buyer : buyers2) {
+            List<String> lines = buyerToString(buyer);
+            for (String line : lines) {
+                try(FileWriter writer = new FileWriter("notes3.txt", false))
+                {
+
+                    writer.write(line);
+
+                    writer.flush();
+                }
+                catch(IOException ex){
+
+                    System.out.println(ex.getMessage());
+                }
+            }
+        }
+
+            f(buyers2);
+        }
+
+        private static void f (Set < Buyer > buyers2) {
+            for (Buyer buyer1 : buyers2) {
+                System.out.println(buyer1.getNameBuyer());
+                for (City city : buyer1.getCities()) {
+                    System.out.println(city.getName());
+                    for (Order order : city.getOrders()) {
+                        System.out.println(order.getNameGoods());
+                    }
+                }
+            }
+        }
+
+        private static List<String> buyerToString (Buyer buyer){
+            List<String> results = new ArrayList<>();
+            for (City city : buyer.getCities()) {
+                for (Order order : city.getOrders()) {
+                    results.add(createLine(buyer.getNameBuyer(), city.getName(), order.getNameGoods(), order.getItem()));
+                }
+            }
+            return results;
+        }
+
+
+        private static String createLine (String name, String cityName, String goodName, Integer count){
+            return String.format("%s|%s|%s|%d", name, cityName, goodName, count);
+        }
     }
-}
