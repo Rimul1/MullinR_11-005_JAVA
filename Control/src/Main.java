@@ -1,6 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -42,5 +41,50 @@ public class Main {
             }
         }
 
+        List<Buyer> buyerList = new ArrayList<>();
+
+        Set<Buyer> buyers1 = new TreeSet<>(new BuyerByNameComparator()
+                .thenComparing(new BuyerByCityCountComparator()
+                        .thenComparing(new BuyerByOrdersCountComparator())));
+        buyers1.addAll(buyerList);
+
+
+
+        Set<Buyer> buyers2 = new TreeSet<>(new BuyerByOrdersCountComparator()
+                .thenComparing(new BuyerByCityCountComparator()
+                        .thenComparing(new BuyerByNameComparator())));
+        buyers2.addAll(buyerList);
+
+        List<Buyer> buyers = new ArrayList<>();
+        Map<String, Map<String, Map<String, Integer>>> mapmap = new HashMap<>();
+        for (Map.Entry<String, Map<String, Map<String, Integer>>> nameCityEntry : mapmap.entrySet()) {
+            Buyer buyer = new Buyer(nameCityEntry.getKey());
+            for (Map.Entry<String, Map<String, Integer>> cityOrderEntry : nameCityEntry.getValue().entrySet()) {
+                City city = new City(cityOrderEntry.getKey()); //создать  в city
+
+                for (Map.Entry<String, Integer> orderCountEntry : cityOrderEntry.getValue().entrySet()) {
+                    city.getOrders().add(new Order(orderCountEntry.getKey(), orderCountEntry.getValue()));
+                }
+
+                buyer.getCities().add(city);
+            }
+
+            buyers.add(buyer);
+        }
+
+
+        f(buyers2);
+    }
+
+    private static void f(Set<Buyer> buyers2) {
+        for (Buyer buyer1 : buyers2) {
+            System.out.println(buyer1.getNameBuyer());
+            for (City city : buyer1.getCities()) {
+                System.out.println(city.getName());
+                for (Order order : city.getOrders()) {
+                    System.out.println(order.getNameGoods());
+                }
+            }
+        }
     }
 }

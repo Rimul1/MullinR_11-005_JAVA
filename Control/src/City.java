@@ -1,15 +1,18 @@
+import java.util.Arrays;
+import java.util.List;
+
 public class City {
     //название города
     //список заказов, сделанных в этом городе одним покупателем (массив Order[])
 
     String name;
-    Order[] orders;
+    List<Order> orders;
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setOrders(Order[] orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 
@@ -17,17 +20,16 @@ public class City {
         return name;
     }
 
-    public Order[] getOrders() {
+    public List<Order> getOrders() {
         return orders;
     }
 
     public long getOrdersCount() {
-        return orders != null ? orders.length : 0;
+        return orders != null ? orders.size() : 0;
     }
 
 
-    public City(String name, Order[] orders) {
-        this.name = name;
-        this.orders = orders;
+    public City(String key) {
+        this.name = key;
     }
 }

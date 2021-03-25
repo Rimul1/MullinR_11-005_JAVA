@@ -1,15 +1,21 @@
+import java.util.List;
+
 public class Buyer {
     //имя
     //список городов, в которых покупатель делал заказы (City[])
     //
     String nameBuyer;
-    City[] cities;
+    List<City> cities;
+
+    public Buyer(String key) {
+        this.nameBuyer = key;
+    }
 
     public void setNameBuyer(String nameBuyer) {
         this.nameBuyer = nameBuyer;
     }
 
-    public void setCities(City[] cities) {
+    public void setCities(List<City> cities) {
         this.cities = cities;
     }
 
@@ -17,14 +23,10 @@ public class Buyer {
         return nameBuyer;
     }
 
-    public City[] getCities() {
+    public List<City> getCities() {
         return cities;
     }
 
-    public Buyer(String nameBuyer, City[] cities) {
-        this.nameBuyer = nameBuyer;
-        this.cities = cities;
-    }
 
     public long getOrdersCount() {
         long ordersCount = 0;
