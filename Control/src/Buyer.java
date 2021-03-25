@@ -1,11 +1,12 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Buyer {
     //имя
     //список городов, в которых покупатель делал заказы (City[])
     //
-    String nameBuyer;
-    List<City> cities;
+    private String nameBuyer;
+    private List<City> cities = new ArrayList<>();
 
     public Buyer(String key) {
         this.nameBuyer = key;
@@ -32,7 +33,7 @@ public class Buyer {
         long ordersCount = 0;
 
         for (City city : cities) {
-            ordersCount += city.getOrdersCount();
+            ordersCount += city.getOrders().size();
         }
         return ordersCount;
     }

@@ -1,9 +1,7 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ProductParser {
-    public Map<String,Map<String ,Map<String, Integer>>> parse(ArrayList<String> lines) {
+    public Map<String,Map<String ,Map<String, Integer>>> parse(List<String> lines) {
         Map<String,Map<String, Map<String, Integer>>> mapMap = new HashMap<>();
 
         for (String line : lines) {

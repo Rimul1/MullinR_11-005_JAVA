@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -5,8 +6,8 @@ public class City {
     //название города
     //список заказов, сделанных в этом городе одним покупателем (массив Order[])
 
-    String name;
-    List<Order> orders;
+    private String name;
+    private List<Order> orders = new ArrayList<>();
 
     public void setName(String name) {
         this.name = name;
