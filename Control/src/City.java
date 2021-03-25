@@ -21,6 +21,11 @@ public class City {
         return orders;
     }
 
+    public long getOrdersCount() {
+        return orders != null ? orders.length : 0;
+    }
+
+
     public City(String name, Order[] orders) {
         this.name = name;
         this.orders = orders;

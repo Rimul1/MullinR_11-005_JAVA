@@ -1,12 +1,9 @@
 import java.util.Comparator;
 
-public class BuyerByNamecomparator implements Comparator<Buyer> {
+public class BuyerByNameComparator implements Comparator<Buyer> {
     
     @Override
     public int compare(Buyer o1, Buyer o2) {
-        return Integer.compare(01.getName().Lehgth(), 02.getName().Length())
-    }
-
-    private Object getName() {
+        return Integer.compare(o1.getNameBuyer().length(), o2.getNameBuyer().length());
     }
 }

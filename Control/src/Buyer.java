@@ -25,4 +25,13 @@ public class Buyer {
         this.nameBuyer = nameBuyer;
         this.cities = cities;
     }
+
+    public long getOrdersCount() {
+        long ordersCount = 0;
+
+        for (City city : cities) {
+            ordersCount += city.getOrdersCount();
+        }
+        return ordersCount;
+    }
 }
